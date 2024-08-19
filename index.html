@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Template HTML for Appsheet</title>
+    <title>BIÊN BẢN NGHIỆM THU VÀ BÀN GIAO </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -14,13 +14,159 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
-   
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            width: 210mm;
+            /* Width of A4 */
+            margin: 0 auto;
+        }
+        
+        p {
+            text-align: justify;
+        }
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .content {
+            margin-left: 40px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: right;
+                /* Đảm bảo rằng nền footer là trắng để tránh chồng lấp */
+                padding: 10px 0;
+                /* Đường kẻ ngăn cách footer với nội dung */
+            }
+
+            /* Ẩn các phần tử khác nếu cần */
+            #in * {
+                visibility: hidden;
+            }
+
+            #footer,
+            #footer,
+            #content * {
+                visibility: visible;
+            }
+
+            /* Nếu bạn muốn hiện các phần khác của nội dung, hãy tùy chỉnh các selector */
+        }
+    </style>
+
 </head>
 
 <body>
-    <span id="a"></span>
-    <span id="b"></span>
+    <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
+        PDF</button>
+        <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file DOC</button></div>
 
+    <div id="content">
+        <div class="center">
+            <h4 class="bold">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
+            <h5 class="bold">Độc lập - Tự do - Hạnh phúc</h5>
+            <p class="center">---------------o0o---------------</p>
+
+        </div>
+
+        <h4 class="center bold">BIÊN BẢN NGHIỆM THU VÀ BÀN GIAO </h4>
+        <p class="center bold">Số: <span id="y"></span>/HĐ/TĐG/AAVC</p>
+        <p class="center bold">V/v: Thẩm định giá đối với Gói thầu: <span id="l"></span></p>
+        <p> <span class="bold">1. Đối tượng nghiệm thu bàn giao: </span> <span id="l1"></span></p>
+        <p> <span class="bold">2. Thành phần tham gia: </span></p>
+        <p><span class="bold">- Chủ đầu tư: (Gọi tắt là Bên A):</span> <span class="bold" id="aj"> .</span></p>
+        <p>- Đại diện: <span id="ak"></span>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Chức vụ: <span id="al"></span>
+        </p>
+
+
+
+
+        <p><span class="bold">- Nhà thầu (Gọi tắt là Bên B): Công ty TNHH Hãng Định giá và Kiểm toán Châu Á</span></p>
+        <p>- Ông: Trần Anh Tuyến
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Chức vụ: Tổng giám đốc</p>
+
+        <p>- Ông: Võ Hoàng Ẩn
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Chức vụ: Phó tổng giám đốc</p>
+
+
+        <p class="bold">3. Thời gian nghiệm thu bàn giao: </p>
+        <P><i>Bắt đầu: 08h30 ngày &emsp; tháng &emsp; năm 2024</i></P>
+        <P><i>Kết thúc: 09h ngày &emsp; tháng &emsp; năm 2024</i></P>
+
+
+        <p class="bold">4. Đánh giá chung: </p>
+        <p>- Giá trị Thẩm định giá đối với Gói thầu: <span id="l2"></span> theo Chứng thư thẩm định giá số <span id="y1"></span>/CT-TĐG/AAVC ngày <span id="ad"></span>.</p>
+        <p class="p">- Về công việc: Quy trình thẩm định giá đúng với tiêu chuẩn thẩm định giá số 06 "Báo cáo kết quả thẩm định
+            giá,
+            chứng thư thẩm định giá, hồ sơ thẩm định giá"</p>
+        <p>- Về khối lượng công việc thẩm định giá: Đầy đủ theo Hợp đồng.</p>
+        <p class="p">- Hình thức, số lượng chứng thư thẩm định giá: Hình thức rõ ràng, chuẩn mực, số lượng báo cáo đầy đủ theo
+            đúng
+            Hợp đồng.</p>
+        <p>- Các ý kiến khác: Không có.</p>
+
+        <p class="bold">5. Kết luận: </p>
+        <p>- Bên A chấp nhận nghiệm thu Chứng thư Thẩm định giá đối với Gói thầu: <span id="l3"></span></p>
+            <p>- Biên bản này được lập thành 02 bản, Bên A giữ 01 bản, Bên B giữ 01 bản, các bản có giá trị pháp lý như nhau.</p>
+
+     
+        <div class="signature" style="display: flex; justify-content: space-between;">
+            <div class="bold" style="text-align: left;">&emsp;BÊN GIAO VIỆC</div>
+            <div class="bold" style="text-align: right;">BÊN NHẬN VIỆC&emsp;</div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+    </div>
+    <div id="footer" class="footer">
+        <img src="https://ninhpoal.github.io/thamdinh/hinhanh/dinhgiaavsodt-removebg-preview.png"
+            style="    width: 100px;" alt="Logo Định Giá AV">
+
+    </div>
     <script>
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -38,12 +184,83 @@
         }
 
         // Get parameters from URL and set content
-        var parameters = ['a' ,'b'];
+        var parameters = ['a', 'b', 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
         parameters.forEach(function (param) {
             var value = getUrlParameter(param);
             setTextContentById(param, value);
         });
+        var y = getUrlParameter('y');
+        document.getElementById('y1').textContent = y ;
+        var l = getUrlParameter('l1');
+        document.getElementById('l1').textContent = l ;
+        document.getElementById('l2').textContent = l ;
+        document.getElementById('l3').textContent = l ;
+        
     </script>
+    <script>
+        function exportHTML() {
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+                "<style>" +
+                "@page {" +
+                "    size: A4;" +
+                "    margin: 20mm;" +
+                "}" +
+                "body {" +
+                "    font-family: 'Times New Roman', Times, serif;" +
+                "    width: 210mm;" +
+                "    margin: 0 auto;" +
+                "}" +
+                ".center {" +
+                "    text-align: center;" +
+                "}" +
+                ".right {" +
+                "    text-align: right;" +
+                "}" +
+                 
+                `p {
+                        text-align: justify;
+                        line-height: 2;
+                        margin: 10px 0;
+                }`+
+                ".bold {" +
+                "    font-weight: bold;" +
+                "}" +
+                ".underline {" +
+                "    text-decoration: underline;" +
+                "}" +
+                ".signature {" +
+                "    margin-top: 50px;" +
+                "}" +
+                ".content {" +
+                "    margin-left: 40px;" +
+                "}" +
+                ".red {" +
+                "    color: red;" +
+                "}" +
+                ".buttons {" +
+                "    text-align: center;" +
+                "    margin-bottom: 20px;" +
+                "}" +
+                "</style>" +
+                "</head><body>";
+    
+            var sourceHTML = header + document.getElementById("content").innerHTML;
+    
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'document.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+    </script>
+
+
+
 </body>
 
 </html>
