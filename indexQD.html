@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIÊN BẢN NGHIỆM THU VÀ BÀN GIAO </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            width: 210mm;
+            /* Width of A4 */
+            margin: 0 auto;
+        }
+        
+        p {
+            text-align: justify;
+        }
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .content {
+            margin-left: 40px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: right;
+                /* Đảm bảo rằng nền footer là trắng để tránh chồng lấp */
+                padding: 10px 0;
+                /* Đường kẻ ngăn cách footer với nội dung */
+            }
+
+            /* Ẩn các phần tử khác nếu cần */
+            #in * {
+                visibility: hidden;
+            }
+
+            #footer,
+            #footer,
+            #content * {
+                visibility: visible;
+            }
+
+            /* Nếu bạn muốn hiện các phần khác của nội dung, hãy tùy chỉnh các selector */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
+        PDF</button>
+        <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file DOC</button></div>
+
+    <div id="content">
+        <div class="center">
+            <h4 class="bold">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
+            <h5 class="bold">Độc lập - Tự do - Hạnh phúc</h5>
+            <p class="center">---------------o0o---------------</p>
+
+        </div>
+
+        <p>
+            CNKV ĐỒNG BẰNG SÔNG CỬU LONG<br>
+            PHÒNG KIỂM TRA<br>
+            Số: …… /QĐ-ĐBSCL CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+            Độc lập - Tự do - Hạnh phúc<br>
+            Cần Thơ, ngày …… tháng …… năm 2023<br>
+             <br>
+            QUYẾT ĐỊNH<br>
+            Về việc kiểm tra trực tiếp<br>
+            tại Quỹ tín dụng nhân dân <<TENDV>>, tỉnh <<TINH_THANHPHO>></p>
+            
+            <p>GIÁM ĐỐC CHI NHÁNH BẢO HIỂM TIỀN GỬI VIỆT NAM<br>
+            KHU VỰC ĐỒNG BẰNG SÔNG CỬU LONG<br>
+            </p>
+            
+            <p>
+            Căn cứ Luật bảo hiểm tiền gửi số 06/2012/QH13 ngày 18/6/2012;<br>
+            Căn cứ Nghị định số 68/2013/NĐ-CP ngày 28/6/2013 của Chính phủ quy định chi tiết và hướng dẫn thi hành Luật bảo hiểm tiền gửi;<br>
+            Căn cứ Quyết định số 1394/QĐ-TTg ngày 13/8/2013 của Thủ tướng Chính phủ về việc thành lập Bảo hiểm tiền gửi Việt Nam và quy định chức năng, nhiệm vụ của Bảo hiểm tiền gửi Việt Nam;<br>
+            Căn cứ Quyết định số 1395/QĐ-TTg ngày 13/8/2013 của Thủ tướng Chính phủ phê duyệt Điều lệ về tổ chức và hoạt động của Bảo hiểm tiền gửi Việt Nam; Quyết định số 527/QĐ-TTg ngày 01/4/2016 của Thủ tướng Chính phủ về việc sửa đổi, bổ sung một số điều của Điều lệ về tổ chức và hoạt động của Bảo hiểm tiền gửi Việt Nam ban hành kèm theo Quyết định số 1395/QĐ-TTg ngày 13/8/2013 của Thủ tướng Chính phủ;<br>
+            Căn cứ Thông tư số 24/2014/TT-NHNN ngày 06/9/2014 của Ngân hàng Nhà nước Việt Nam hướng dẫn một số nội dung về hoạt động bảo hiểm tiền gửi;<br>
+            Căn cứ Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015 của Hội đồng quản trị Bảo hiểm tiền gửi Việt Nam về việc ban hành Quy chế kiểm tra của Bảo hiểm tiền gửi Việt Nam đối với tổ chức tham gia bảo hiểm tiền gửi; Quyết định số 609/QĐ-BHTG ngày 27/9/2021 của Hội đồng quản trị Bảo hiểm tiền gửi Việt Nam về việc sửa đổi, bổ sung một số điều của Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015;<br>
+            Căn cứ Công văn số 900/BHTG-KTr ngày 20/10/2022 của Tổng giám đốc Bảo hiểm tiền gửi Việt Nam về việc giao kế hoạch kiểm tra định kỳ năm 2023 đối với tổ chức tham gia bảo hiểm tiền gửi;<br>
+            Xét đề nghị của Trưởng phòng Kiểm tra Chi nhánh Bảo hiểm tiền gửi Việt Nam (BHTGVN) khu vực Đồng bằng sông Cửu Long (ĐBSCL),</p>
+            
+            <p>QUYẾT ĐỊNH:<br>
+             <br>
+            Điều 1. Tiến hành kiểm tra việc chấp hành các quy định của pháp luật về bảo hiểm tiền gửi tại Quỹ tín dụng nhân dân <<TENDV>>, tỉnh <<TINH_THANHPHO>>.<br>
+            - Thời kỳ kiểm tra: kiểm tra việc tính và nộp phí BHTG từ kỳ thu phí BHTG quý <<Text:Thoikykiemtra>> đến kỳ thu phí BHTG quý III/2023, trên cơ sở số dư tiền gửi được bảo hiểm từ ngày <<TextNHNN:Thoikykiemtra>> 01/7/2019 đến ngày 30/6/2023; kiểm tra việc chấp hành các quy định khác về BHTG từ ngày 01/7/2019 đến ngày kiểm tra.<br>
+            - Thời hạn kiểm tra là <<Ngày làm việc>> ngày làm việc, kể từ ngày công bố Quyết định kiểm tra.<br>
+            - Nội dung kiểm tra: theo Đề cương số ……/ĐC-ĐBSCL ngày ……/……/2023 của Giám đốc Chi nhánh BHTGVN khu vực ĐBSCL.<br>
+            Điều 2. Thành lập Đoàn kiểm tra để kiểm tra đối với đơn vị nêu tại Điều 1, gồm các ông (bà) có tên sau đây:<br>
+            <<ThanhVien>><br>
+            - Bà Trần Thu Hà - Phó trưởng phòng Kiểm tra - Trưởng đoàn<br>
+            - Ông Võ Minh Tuấn - Cán bộ phòng Kiểm tra - Thành viên<br>
+            - Ông Nguyễn Hoàng Phúc - Cán bộ phòng Kiểm tra - Thành viên<br>
+            Điều 3. Đoàn kiểm tra có nhiệm vụ và quyền hạn:<br>
+            - Thực hiện kiểm tra theo Đề cương số ……/ĐC-ĐBSCL ngày ……/……/2023 của Giám đốc Chi nhánh BHTGVN khu vực ĐBSCL.<br>
+            - Thực hiện nhiệm vụ và quyền hạn theo quy định tại Điều 24 Quy chế kiểm tra của BHTGVN đối với tổ chức tham gia bảo hiểm tiền gửi ban hành kèm theo Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015 của Hội đồng quản trị BHTGVN, Quyết định số 609/QĐ-BHTG ngày 27/9/2021 của Hội đồng quản trị BHTGVN về việc sửa đổi, bổ sung một số điều của Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015.<br>
+            Điều 4. Đơn vị được kiểm tra nêu tại Điều 1 thực hiện nhiệm vụ và quyền hạn theo quy định tại Điều 12 Quy chế kiểm tra của BHTGVN đối với tổ chức tham gia bảo hiểm tiền gửi ban hành kèm theo Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015 của Hội đồng quản trị BHTGVN, Quyết định số 609/QĐ-BHTG ngày 27/9/2021 của Hội đồng quản trị BHTGVN về việc sửa đổi, bổ sung một số điều của Quyết định số 801/QĐ-BHTG-HĐQT ngày 30/12/2015 và các quy định khác của pháp luật có liên quan.<br>
+            Điều 5. Các ông (bà) có tên tại Điều 2, Trưởng phòng Kiểm tra, Trưởng phòng Hành chính - Nhân sự tại Chi nhánh BHTGVN khu vực ĐBSCL và đơn vị được kiểm tra nêu tại Điều 1 chịu trách nhiệm thi hành Quyết định này./.<br>
+            Nơi nhận:<br>
+            - Đơn vị, cá nhân nêu ở Điều 5;<br>
+            - Phòng Kiểm tra BHTGVN;<br>
+            - Ban giám đốc CN;<br>
+            - Phòng Kế toán CN;<br>
+            - Lưu: VT, HSKT.<br>
+             KT. GIÁM ĐỐC<br>
+            PHÓ GIÁM ĐỐC</p>
+            
+            <p>
+            Nguyễn Minh Nhựt</p>
+        
+    </div>
+    <div id="footer" class="footer">
+        <img src="https://ninhpoal.github.io/thamdinh/hinhanh/dinhgiaavsodt-removebg-preview.png"
+            style="    width: 100px;" alt="Logo Định Giá AV">
+
+    </div>
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to set text content if element exists
+        function setTextContentById(id, value) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        // Get parameters from URL and set content
+        var parameters = ['a', 'b', 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
+        parameters.forEach(function (param) {
+            var value = getUrlParameter(param);
+            setTextContentById(param, value);
+        });
+        var y = getUrlParameter('y');
+        document.getElementById('y1').textContent = y ;
+        var l = getUrlParameter('l1');
+        document.getElementById('l1').textContent = l ;
+        document.getElementById('l2').textContent = l ;
+        document.getElementById('l3').textContent = l ;
+        
+    </script>
+    <script>
+        function exportHTML() {
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+                "<style>" +
+                "@page {" +
+                "    size: A4;" +
+                "    margin: 20mm;" +
+                "}" +
+                "body {" +
+                "    font-family: 'Times New Roman', Times, serif;" +
+                "    width: 210mm;" +
+                "    margin: 0 auto;" +
+                "}" +
+                ".center {" +
+                "    text-align: center;" +
+                "}" +
+                ".right {" +
+                "    text-align: right;" +
+                "}" +
+                 
+                `p {
+                        text-align: justify;
+                        line-height: 2;
+                        margin: 10px 0;
+                }`+
+                ".bold {" +
+                "    font-weight: bold;" +
+                "}" +
+                ".underline {" +
+                "    text-decoration: underline;" +
+                "}" +
+                ".signature {" +
+                "    margin-top: 50px;" +
+                "}" +
+                ".content {" +
+                "    margin-left: 40px;" +
+                "}" +
+                ".red {" +
+                "    color: red;" +
+                "}" +
+                ".buttons {" +
+                "    text-align: center;" +
+                "    margin-bottom: 20px;" +
+                "}" +
+                "</style>" +
+                "</head><body>";
+    
+            var sourceHTML = header + document.getElementById("content").innerHTML;
+    
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'document.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+    </script>
+
+
+
+</body>
+
+</html>
