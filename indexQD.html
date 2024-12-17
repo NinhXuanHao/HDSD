@@ -93,6 +93,9 @@
 </head>
 
 <body>
+    
+    <span id="b"></span>
+
     <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
         PDF</button>
         <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file DOC</button></div>
@@ -109,7 +112,7 @@
                 <p style="text-align: center;margin-top: 6.0pt;"><span style="">V/v </span><span style="">phối hợp xây
                         dựng kế hoạch</span><span style=""> kiểm tra</span></p>
                 <p style="text-align: center;"><span style="">tổ chức tham gia BHTG</span><span style=""> </span><span
-                        style="">năm 2023</span></p>
+                        style="">năm <span id="Nam"></span></span></p>
             </td>
             <td style="text-align: left;vertical-align: top;">
                 <p style="text-align: center;"><span style="font-weight: bold;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT </span>
@@ -240,7 +243,7 @@
         }
 
         // Get parameters from URL and set content
-        var parameters = ['a', 'b']; //, 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
+        var parameters = ['Nam', 'b']; //, 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
         parameters.forEach(function (param) {
             var value = getUrlParameter(param);
             setTextContentById(param, value);
