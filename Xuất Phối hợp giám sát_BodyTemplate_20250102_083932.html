@@ -1,28 +1,461 @@
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 
-<head></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phối hợp Kiểm tra gửi NHNN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            width: 210mm;
+            /* Width of A4 */
+            margin: 0 auto;
+        }
+
+         p {
+             text-align: justify;
+            
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        div:not(table *) {
+            text-align: justify;
+            line-height: 1;
+            /* Single spacing */
+        }
+
+        table td,
+        table th {
+            line-height: 1;
+            /* Single spacing */
+        }
+
+        td p {
+            margin: 0;
+            /* Đảm bảo văn bản trong ô không có spacing */
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .content {
+            margin-left: 40px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: right;
+                /* Đảm bảo rằng nền footer là trắng để tránh chồng lấp */
+                padding: 10px 0;
+                /* Đường kẻ ngăn cách footer với nội dung */
+            }
+
+            /* Ẩn các phần tử khác nếu cần */
+            #in * {
+                visibility: hidden;
+            }
+
+            #footer,
+            #footer,
+            #content * {
+                visibility: visible;
+            }
+
+            /* Nếu bạn muốn hiện các phần khác của nội dung, hãy tùy chỉnh các selector */
+        }
+    </style>
+
+</head>
 
 <body>
-    <h1>Xuất Phối hợp gi&#225;m s&#225;t</h1>
-    <h2>LocKehoachkiemtra</h2>
-    <p>ID: &lt;&lt;[ID]&gt;&gt;</p>
-    <p>ID kiểm tra: &lt;&lt;[ID kiểm tra]&gt;&gt;</p>
-    <p>LOAIHINHKIEMTRA: &lt;&lt;[LOAIHINHKIEMTRA]&gt;&gt;</p>
-    <p>T&#236;nh trạng kiểm tra: &lt;&lt;[T&#236;nh trạng kiểm tra]&gt;&gt;</p>
-    <p>Tungay: &lt;&lt;[Tungay]&gt;&gt;</p>
-    <p>Denngay: &lt;&lt;[Denngay]&gt;&gt;</p>
-    <p>Kết quả kiểm tra: &lt;&lt;[Kết quả kiểm tra]&gt;&gt;</p>
-    <p>File tờ tr&#236;nh: &lt;&lt;[File tờ tr&#236;nh]&gt;&gt;</p>
-    <p>File gi&#225;m s&#225;t: &lt;&lt;[File gi&#225;m s&#225;t]&gt;&gt;</p>
-    <p>File h&#224;nh ch&#237;nh: &lt;&lt;[File h&#224;nh ch&#237;nh]&gt;&gt;</p>
-    <p>File kế to&#225;n: &lt;&lt;[File kế to&#225;n]&gt;&gt;</p>
-    <p>File kế hoạch NHNN: &lt;&lt;[File kế hoạch NHNN]&gt;&gt;</p>
-    <p>File th&#244;ng b&#225;o NHNN: &lt;&lt;[File th&#244;ng b&#225;o NHNN]&gt;&gt;</p>
-    <p>Update: &lt;&lt;[Update]&gt;&gt;</p>
-    <p>FilteredData: &lt;&lt;[FilteredData]&gt;&gt;</p>
-    <p>Số lượt kiểm tra: &lt;&lt;[Số lượt kiểm tra]&gt;&gt;</p>
-    <p>NameOfFilter: &lt;&lt;[NameOfFilter]&gt;&gt;</p>
-    <p>TINHTHANHPHO: &lt;&lt;[TINHTHANHPHO]&gt;&gt;</p><br /><br />
+    <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
+            PDF</button>
+        <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file
+            DOC</button>
+    </div>
+
+    <div id="content">
+        <table>
+            <tr>
+                <td style="width: 211.6pt; width: 211.6pt; border: none;">
+                    <p style="text-align: center;"><span style="">CNKV ĐỒNG BẰNG SÔNG CỬU LONG</span></p>
+                    <p style="text-align: center;"><span style="font-weight: bold;">PHÒNG KIỂM TRA</span></p>
+                    <p style="text-align: center;margin-top: 8.0pt;"><span style=""></span><span
+                            style="font-size: 13.0pt;">Số: </span><span style="font-size: 13.0pt;">……..</span><span
+                            style="font-size: 13.0pt;">/KTr</span></p>
+                    <p style="text-align: center;margin-top: 6.0pt;"><span style="">V/v phối hợp thực hiện công
+                            tác</span></p>
+                    <p style="text-align: center;"><span style="">kiểm tra theo kế hoạch</span></p>
+                </td>
+                <td style="width: 257.45pt; width: 257.45pt; border: none;">
+                    <p style="text-align: center;"><span style="font-weight: bold;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT
+                            NAM</span></p>
+                    <p style="text-align: center;"><span style="font-weight: bold;font-size: 13.0pt;">Độc lập - Tự do -
+                            Hạnh phúc</span></p>
+                    <p style="text-align: center;margin-top: 8.0pt;"><span style="font-style: italic;"></span><span
+                            style="font-style: italic;font-size: 13.0pt;">Cần Thơ, ngày </span><span
+                            style="font-style: italic;font-size: 13.0pt;">……</span><span
+                            style="font-style: italic;font-size: 13.0pt;"> </span><span
+                            style="font-style: italic;font-size: 13.0pt;">tháng </span><span
+                            style="font-style: italic;font-size: 13.0pt;">3</span><span
+                            style="font-style: italic;font-size: 13.0pt;"> </span><span
+                            style="font-style: italic;font-size: 13.0pt;">năm 20</span><span
+                            style="font-style: italic;font-size: 13.0pt;">20</span></p>
+                </td>
+            </tr>
+        </table>
+        <p style=""></p>
+        <p style=""></p>
+        <p style="text-indent: 36.0pt;"><span style="font-size: 14.0pt;">Kính gửi:</span><span
+                style="font-size: 14.0pt;"> </span><span style="font-size: 14.0pt;">Phòng G</span><span
+                style="font-size: 14.0pt;">iám sát </span></p>
+        <p style="text-indent: 36.0pt;"><span style="font-size: 14.0pt;">Chi nhánh BHTGVN khu vực ĐBSCL</span></p>
+        <p style=""></p>
+        <p style="text-indent: 28.35pt;margin-top: 6.0pt;margin-bottom: 12.0pt;"><span style="font-size: 13.0pt;">Thực
+                hiện kế hoạch kiểm tra đối với các tổ chức tham gia BHTG đã được Giám đốc Chi nhánh </span><span
+                style="font-size: 13.0pt;">BHTGVN khu vực ĐBSCL </span><span style="font-size: 13.0pt;">phê duyệt tại Tờ
+                trình số </span><span style="font-size: 13.0pt;">1</span><span style="font-size: 13.0pt;">4</span><span
+                style="font-size: 13.0pt;">/TTr-KTr ngày </span><span style="font-size: 13.0pt;">0</span><span
+                style="font-size: 13.0pt;">2/</span><span style="font-size: 13.0pt;">3</span><span
+                style="font-size: 13.0pt;">/20</span><span style="font-size: 13.0pt;">20</span><span
+                style="font-size: 13.0pt;">. Phòng Kiểm tra </span><span style="font-size: 13.0pt;">đề nghị </span><span
+                style="font-size: 13.0pt;">Phòng Giám </span><span style="font-size: 13.0pt;">sát cung cấp các nội dung
+                có liên quan đến các </span><span style="font-size: 13.0pt;">tổ chức tham gia </span><span
+                style="font-size: 13.0pt;">BHTG</span><span style="font-size: 13.0pt;"> được kiểm tra </span><span
+                style="font-size: 13.0pt;">trong tháng </span><span style="font-size: 13.0pt;">04</span><span
+                style="font-size: 13.0pt;">/20</span><span style="font-size: 13.0pt;">20</span><span
+                style="font-size: 13.0pt;"> </span><span style="font-size: 13.0pt;">gồm</span><span
+                style="font-size: 13.0pt;">: </span><span style="font-size: 13.0pt;">t</span><span
+                style="font-size: 13.0pt;">hay đổi h</span><span style="font-size: 13.0pt;">ồ sơ pháp lý</span><span
+                style="font-size: 13.0pt;">;</span><span style="font-size: 13.0pt;"> </span><span
+                style="font-size: 13.0pt;">c</span><span style="font-size: 13.0pt;">ấp lại, </span><span
+                style="font-size: 13.0pt;">cấp đổi, </span><span style="font-size: 13.0pt;">cấp bổ sung</span><span
+                style="font-size: 13.0pt;">,</span><span style="font-size: 13.0pt;"> </span><span
+                style="font-size: 13.0pt;">thu hồi </span><span style="font-size: 13.0pt;">b</span><span
+                style="font-size: 13.0pt;">ản sao Chứng nhận tham gia BHTG</span><span style="font-size: 13.0pt;">;
+            </span><span style="font-size: 13.0pt;">t</span><span style="font-size: 13.0pt;">hông tin báo cáo
+            </span><span style="font-size: 13.0pt;">(</span><span style="font-style: italic;font-size: 13.0pt;">từ khi
+            </span><span style="font-style: italic;font-size: 13.0pt;">thực hiện</span><span
+                style="font-style: italic;font-size: 13.0pt;"> </span><span
+                style="font-style: italic;font-size: 13.0pt;">Quyết định 2252</span><span style="font-size: 13.0pt;">)
+            </span><span style="font-size: 13.0pt;">theo danh sách sau:</span></p>
+        <table>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-weight: bold;font-size: 13.0pt;">STT</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-weight: bold;font-size: 13.0pt;">Đơn vị kiểm tra</span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-weight: bold;font-size: 13.0pt;">Tỉnh</span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-weight: bold;font-size: 13.0pt;">Thời hạn kiểm tra</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;"><span
+                            style="font-weight: bold;font-size: 13.0pt;">Thời kỳ kiểm tra</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">1</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style=""><span id="TINH_THANHPHO"></span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">id="TINH_THANHPHO"></span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;"><span style="">06-10/4</span><span style="">/20</span><span
+                            style="">20</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Quý II/2016 - Quý I/2020</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">2</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style="margin-top: 3.0pt;margin-bottom: 3.0pt;"><span style="">QTD </span><span
+                            style="">Mekong</span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Cần Thơ</span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="">06-10/4/2020</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Quý III/2016 - Quý I/2020</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">3</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style=""><span style="">QTD </span><span style="">Thạnh An</span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Cần Thơ</span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;"><span style="">13-17/4/2020</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Quý III/2016 - Quý I/2020</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">4</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style=""><span style="">QTD Tây Đô</span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Cần Thơ</span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;"><span style="">13-17/4/2020</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Quý III/2017 – Quý I/2020</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35.0pt; width: 35.0pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">5</span></p>
+                </td>
+                <td style="width: 103.9pt; width: 103.9pt; border: none;">
+                    <p style=""><span style="">QTD Tín Nghĩa</span></p>
+                </td>
+                <td style="width: 58.5pt; width: 58.5pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Cần Thơ</span></p>
+                </td>
+                <td style="width: 107.7pt; width: 107.7pt; border: none;">
+                    <p style="text-align: center;"><span style="">20-24/4/2020</span></p>
+                </td>
+                <td style="width: 152.6pt; width: 152.6pt; border: none;">
+                    <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
+                            style="font-size: 13.0pt;">Quý III/2016 - Quý I/2020</span></p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-indent: 28.35pt;margin-top: 12.0pt;margin-bottom: 12.0pt;"><span style="font-size: 13.0pt;">Trân
+                trọng kính chào!</span></p>
+        <p style="text-indent: 28.35pt;margin-top: 12.0pt;margin-bottom: 12.0pt;"></p>
+        <table>
+            <tr>
+                <td style="width: 154.85pt; width: 151.3pt; border: none;">
+                    <p style=""><span style="font-weight: bold;font-style: italic;">Nơi nhận:</span></p>
+                    <p style=""><span style="font-size: 11.0pt;">- Như kính gửi;</span></p>
+                    <p style=""><span style="font-size: 11.0pt;">- Lưu: KTr.</span></p>
+                </td>
+                <td style="width: 127.1pt; width: 123.5pt; border: none;">
+                    <p style=""></p>
+                </td>
+                <td style="width: 182.45pt; width: 178.8pt; border: none;">
+                    <p style="text-align: center;"><span style="font-weight: bold;">KT. </span><span
+                            style="font-weight: bold;">TRƯỞNG PHÒNG</span></p>
+                    <p style="text-align: center;"><span style="font-weight: bold;">PHÓ TRƯỞNG PHÒNG</span></p>
+                    <p style="text-align: center;"></p>
+                    <p style="text-align: center;"></p>
+                    <p style="text-align: center;"></p>
+                    <p style="text-align: center;"></p>
+                    <p style="text-align: center;"><span style="font-weight: bold;font-size: 13.0pt;">Trần Thu Hà</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p style=""></p>
+        <p style="text-indent: 28.35pt;margin-top: 6.0pt;margin-bottom: 12.0pt;"></p>
+        <h1>Xuất Phối hợp gi&#225;m s&#225;t</h1>
+        <h2>LocKehoachkiemtra</h2>
+        <p>ID: &lt;&lt;[ID]&gt;&gt;</p>
+        <p>ID kiểm tra: &lt;&lt;[ID kiểm tra]&gt;&gt;</p>
+        <p>LOAIHINHKIEMTRA: &lt;&lt;[LOAIHINHKIEMTRA]&gt;&gt;</p>
+        <p>T&#236;nh trạng kiểm tra: &lt;&lt;[T&#236;nh trạng kiểm tra]&gt;&gt;</p>
+        <p>Tungay: &lt;&lt;[Tungay]&gt;&gt;</p>
+        <p>Denngay: &lt;&lt;[Denngay]&gt;&gt;</p>
+        <p>Kết quả kiểm tra: &lt;&lt;[Kết quả kiểm tra]&gt;&gt;</p>
+        <p>File tờ tr&#236;nh: &lt;&lt;[File tờ tr&#236;nh]&gt;&gt;</p>
+        <p>File gi&#225;m s&#225;t: &lt;&lt;[File gi&#225;m s&#225;t]&gt;&gt;</p>
+        <p>File h&#224;nh ch&#237;nh: &lt;&lt;[File h&#224;nh ch&#237;nh]&gt;&gt;</p>
+        <p>File kế to&#225;n: &lt;&lt;[File kế to&#225;n]&gt;&gt;</p>
+        <p>File kế hoạch NHNN: &lt;&lt;[File kế hoạch NHNN]&gt;&gt;</p>
+        <p>File th&#244;ng b&#225;o NHNN: &lt;&lt;[File th&#244;ng b&#225;o NHNN]&gt;&gt;</p>
+        <p>Update: &lt;&lt;[Update]&gt;&gt;</p>
+        <p>FilteredData: &lt;&lt;[FilteredData]&gt;&gt;</p>
+        <p>Số lượt kiểm tra: &lt;&lt;[Số lượt kiểm tra]&gt;&gt;</p>
+        <p>NameOfFilter: &lt;&lt;[NameOfFilter]&gt;&gt;</p>
+        <p>TINHTHANHPHO: &lt;&lt;[TINHTHANHPHO]&gt;&gt;</p><br /><br />
+        <script>
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            // Function to set text content if element exists
+            function setTextContentById(id, value) {
+                var element = document.getElementById(id);
+                if (element) {
+                    element.textContent = value;
+                }
+            }
+
+            // Get parameters from URL and set content
+            var parameters = ['TINH_THANHPHO', 'Text:Thoihankiemtra']; //, 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
+            parameters.forEach(function (param) {
+                var value = getUrlParameter(param);
+                setTextContentById(param, value);
+            });
+            var y = getUrlParameter('TINH_THANHPHO');
+            document.getElementById('Thoihankiemtra').textContent = Thoihankiemtra;
+            var l = getUrlParameter('l1');
+            document.getElementById('l1').textContent = l;
+            document.getElementById('l2').textContent = l;
+            document.getElementById('l3').textContent = l;
+
+        </script>
+        <script>
+            function exportHTML() {
+                var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                    "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                    "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                    "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+                    "<style>" +
+                    "@page {" +
+                    "    size: A4;" +
+                    "    margin: 20mm;" +
+                    "}" +
+                    "body {" +
+                    "    font-family: 'Times New Roman', Times, serif;" +
+                    "    width: 210mm;" +
+                    "    margin: 0 auto;" +
+                    "}" +
+                    ".center {" +
+                    "    text-align: center;" +
+                    "}" +
+                    ".right {" +
+                    "    text-align: right;" +
+                    "}" +
+                    "td p {" +
+                    "        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */" +
+                    "}" +
+                    "p {" +
+                    "        text-align: justify;" +
+                    "        line-height: 1;" +
+                    "        margin: 0;" +
+                    "}" +
+                    ".bold {" +
+                    "    font-weight: bold;" +
+                    "}" +
+                    ".underline {" +
+                    "    text-decoration: underline;" +
+                    "}" +
+                    ".signature {" +
+                    "    margin-top: 50px;" +
+                    "}" +
+                    ".content {" +
+                    "    margin-left: 40px;" +
+                    "}" +
+                    ".red {" +
+                    "    color: red;" +
+                    "}" +
+                    ".buttons {" +
+                    "    text-align: center;" +
+                    "    margin-bottom: 20px;" +
+                    "}" +
+                    "</style>" +
+                    "</head><body>";
+
+                var sourceHTML = header + document.getElementById("content").innerHTML;
+
+                var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+                var fileDownload = document.createElement("a");
+                document.body.appendChild(fileDownload);
+                fileDownload.href = source;
+                fileDownload.download = 'document.doc';
+                fileDownload.click();
+                document.body.removeChild(fileDownload);
+            }
+        </script>
+
+
 </body>
 
 </html>

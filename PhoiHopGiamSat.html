@@ -114,7 +114,7 @@
 
 </head>
 
-<body>
+<body contenteditable="true">
     <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
             PDF</button>
         <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file
@@ -140,14 +140,8 @@
                     <p style="text-align: center;"><span style="font-weight: bold;font-size: 13.0pt;">Độc lập - Tự do -
                             Hạnh phúc</span></p>
                     <p style="text-align: center;margin-top: 8.0pt;"><span style="font-style: italic;"></span><span
-                            style="font-style: italic;font-size: 13.0pt;">Cần Thơ, ngày </span><span
-                            style="font-style: italic;font-size: 13.0pt;">……</span><span
-                            style="font-style: italic;font-size: 13.0pt;"> </span><span
-                            style="font-style: italic;font-size: 13.0pt;">tháng </span><span
-                            style="font-style: italic;font-size: 13.0pt;">3</span><span
-                            style="font-style: italic;font-size: 13.0pt;"> </span><span
-                            style="font-style: italic;font-size: 13.0pt;">năm 20</span><span
-                            style="font-style: italic;font-size: 13.0pt;">20</span></p>
+                            style="font-style: italic;font-size: 13.0pt;">Cần Thơ, ngày tháng năm </span><span
+                            ></span></p>
                 </td>
             </tr>
         </table>
@@ -169,8 +163,7 @@
                 style="font-size: 13.0pt;">Phòng Giám </span><span style="font-size: 13.0pt;">sát cung cấp các nội dung
                 có liên quan đến các </span><span style="font-size: 13.0pt;">tổ chức tham gia </span><span
                 style="font-size: 13.0pt;">BHTG</span><span style="font-size: 13.0pt;"> được kiểm tra </span><span
-                style="font-size: 13.0pt;">trong tháng </span><span style="font-size: 13.0pt;">04</span><span
-                style="font-size: 13.0pt;">/20</span><span style="font-size: 13.0pt;">20</span><span
+                style="font-size: 13.0pt;">trong tháng </span><span id="a" style="font-size: 13.0pt;"></span><span
                 style="font-size: 13.0pt;"> </span><span style="font-size: 13.0pt;">gồm</span><span
                 style="font-size: 13.0pt;">: </span><span style="font-size: 13.0pt;">t</span><span
                 style="font-size: 13.0pt;">hay đổi h</span><span style="font-size: 13.0pt;">ồ sơ pháp lý</span><span
@@ -358,81 +351,124 @@
             }
 
             // Get parameters from URL and set content
-            var parameters = ['TINH_THANHPHO', 'Text:Thoihankiemtra']; //, 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
+            var parameters = ['a', 'a','c', 'd', 'e', 'f', 'g','h','i','j','k', 'l', 'm', 'o', 'p', 'q', 'u', 'n'];
             parameters.forEach(function (param) {
                 var value = getUrlParameter(param);
                 setTextContentById(param, value);
             });
-            var y = getUrlParameter('TINH_THANHPHO');
-            document.getElementById('Thoihankiemtra').textContent = Thoihankiemtra;
+            var y = getUrlParameter('y');
+            document.getElementById('y1').textContent = y ;
             var l = getUrlParameter('l1');
-            document.getElementById('l1').textContent = l;
-            document.getElementById('l2').textContent = l;
-            document.getElementById('l3').textContent = l;
+            document.getElementById('l1').textContent = l ;
+            document.getElementById('l2').textContent = l ;
+            document.getElementById('l3').textContent = l ;
 
         </script>
         <script>
+            // function exportHTML() {
+            //     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+            //         "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+            //         "xmlns='http://www.w3.org/TR/REC-html40'>" +
+            //         "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+            //         "<style>" +
+            //         "@page {" +
+            //         "    size: A4;" +
+            //         "    margin: 20mm;" +
+            //         "}" +
+            //         "body {" +
+            //         "    font-family: 'Times New Roman', Times, serif;" +
+            //         "    width: 210mm;" +
+            //         "    margin: 0 auto;" +
+            //         "}" +
+            //         ".center {" +
+            //         "    text-align: center;" +
+            //         "}" +
+            //         ".right {" +
+            //         "    text-align: right;" +
+            //         "}" +
+            //         "td p {" +
+            //         "        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */" +
+            //         "}" +
+            //         "p {" +
+            //         "        text-align: justify;" +
+            //         "        line-height: 1;" +
+            //         "        margin: 0;" +
+            //         "}" +
+            //         ".bold {" +
+            //         "    font-weight: bold;" +
+            //         "}" +
+            //         ".underline {" +
+            //         "    text-decoration: underline;" +
+            //         "}" +
+            //         ".signature {" +
+            //         "    margin-top: 50px;" +
+            //         "}" +
+            //         ".content {" +
+            //         "    margin-left: 40px;" +
+            //         "}" +
+            //         ".red {" +
+            //         "    color: red;" +
+            //         "}" +
+            //         ".buttons {" +
+            //         "    text-align: center;" +
+            //         "    margin-bottom: 20px;" +
+            //         "}" +
+            //         "</style>" +
+            //         "</head><body>";
+
+            //     var sourceHTML = header + document.getElementById("content").innerHTML;
+
+            //     var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            //     var fileDownload = document.createElement("a");
+            //     document.body.appendChild(fileDownload);
+            //     fileDownload.href = source;
+            //     fileDownload.download = 'document.doc';
+            //     fileDownload.click();
+            //     document.body.removeChild(fileDownload);
+            // }
             function exportHTML() {
-                var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-                    "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-                    "xmlns='http://www.w3.org/TR/REC-html40'>" +
-                    "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
-                    "<style>" +
-                    "@page {" +
-                    "    size: A4;" +
-                    "    margin: 20mm;" +
-                    "}" +
-                    "body {" +
-                    "    font-family: 'Times New Roman', Times, serif;" +
-                    "    width: 210mm;" +
-                    "    margin: 0 auto;" +
-                    "}" +
-                    ".center {" +
-                    "    text-align: center;" +
-                    "}" +
-                    ".right {" +
-                    "    text-align: right;" +
-                    "}" +
-                    "td p {" +
-                    "        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */" +
-                    "}" +
-                    "p {" +
-                    "        text-align: justify;" +
-                    "        line-height: 1;" +
-                    "        margin: 0;" +
-                    "}" +
-                    ".bold {" +
-                    "    font-weight: bold;" +
-                    "}" +
-                    ".underline {" +
-                    "    text-decoration: underline;" +
-                    "}" +
-                    ".signature {" +
-                    "    margin-top: 50px;" +
-                    "}" +
-                    ".content {" +
-                    "    margin-left: 40px;" +
-                    "}" +
-                    ".red {" +
-                    "    color: red;" +
-                    "}" +
-                    ".buttons {" +
-                    "    text-align: center;" +
-                    "    margin-bottom: 20px;" +
-                    "}" +
-                    "</style>" +
-                    "</head><body>";
-
-                var sourceHTML = header + document.getElementById("content").innerHTML;
-
-                var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-                var fileDownload = document.createElement("a");
-                document.body.appendChild(fileDownload);
-                fileDownload.href = source;
-                fileDownload.download = 'document.doc';
-                fileDownload.click();
-                document.body.removeChild(fileDownload);
+            // Hiển thị hộp thoại để người dùng nhập tên file
+            const fileName = prompt("Nhập tên file:", "document.doc");
+            if (!fileName) {
+                alert("Đã hủy xuất file.");
+                return; // Nếu người dùng không nhập tên, thoát hàm
             }
+
+            // Tạo header HTML cho Word
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document</title>" +
+                "<style>" +
+                "@page { size: A4; margin: 20mm; }" +
+                "body { font-family: 'Times New Roman', Times, serif; width: 210mm; margin: 0 auto; }" +
+                ".center { text-align: center; }" +
+                ".right { text-align: right; }" +
+                "td p { margin: 0; }" +
+                "p { text-align: justify; line-height: 1; margin: 0; }" +
+                ".bold { font-weight: bold; }" +
+                ".underline { text-decoration: underline; }" +
+                ".signature { margin-top: 50px; }" +
+                ".content { margin-left: 40px; }" +
+                ".red { color: red; }" +
+                ".buttons { text-align: center; margin-bottom: 20px; }" +
+                "</style>" +
+                "</head><body>";
+
+            // Lấy nội dung trong #content
+            var sourceHTML = header + document.getElementById("content").innerHTML + "</body></html>";
+
+            // Tạo liên kết tải xuống
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+
+            // Sử dụng tên file từ prompt
+            fileDownload.download = fileName.endsWith(".doc") ? fileName : fileName + ".doc";
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
         </script>
 </body>
 
