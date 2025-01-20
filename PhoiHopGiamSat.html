@@ -119,6 +119,15 @@
             PDF</button>
         <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file
             DOC</button>
+            <button
+            id="editBtn"
+            type="button"
+            class="btn btn-outline-primary"
+          
+            onclick="toggleEditContent()"
+          >
+          toggleEditContent
+          </button>
     </div>
 
     <div id="content">
@@ -351,7 +360,7 @@
             }
 
             // Get parameters from URL and set content
-            var parameters = ['a', 'a','c', 'd', 'e', 'f', 'g','h','i','j','k', 'l', 'm', 'o', 'p', 'q', 'u', 'n'];
+            var parameters = ['a', 'b','c', 'd', 'e', 'f', 'g','h','i','j','k', 'l', 'm', 'o', 'p', 'q', 'u', 'n'];
             parameters.forEach(function (param) {
                 var value = getUrlParameter(param);
                 setTextContentById(param, value);
@@ -469,6 +478,28 @@
             fileDownload.click();
             document.body.removeChild(fileDownload);
         }
+        </script>
+        <script>
+            // Biến trạng thái chỉnh sửa
+            let isEditable = false;
+    
+            // Hàm bật/tắt chỉnh sửa
+            function toggleEditContent() {
+                const contentDiv = document.getElementById('content');
+                const button = document.querySelector('header button');
+    
+                isEditable = !isEditable;
+                contentDiv.contentEditable = isEditable;
+                button.textContent = isEditable ? "Tắt chỉnh sửa" : "Bật chỉnh sửa";
+    
+                // Thay đổi giao diện vùng chỉnh sửa
+                if (isEditable) {
+                    contentDiv.style.border = "1px dashed #4CAF50";
+                    contentDiv.focus();
+                } else {
+                    contentDiv.style.border = "none";
+                }
+            }
         </script>
 </body>
 
