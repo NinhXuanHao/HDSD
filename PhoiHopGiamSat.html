@@ -119,15 +119,64 @@
             PDF</button>
         <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file
             DOC</button>
-            <button
+          </button>  <button
             id="editBtn"
             type="button"
             class="btn btn-outline-primary"
           
             onclick="toggleEditContent()"
+            
           >
-          toggleEditContent
+            Bật chỉnh sửa
           </button>
+
+          <script>
+            let isEditable = false;
+            
+            function toggleEditContent() {
+              const contentDiv = document.getElementById('content');
+              const button = document.getElementById('editBtn');
+              
+              isEditable = !isEditable;
+              contentDiv.contentEditable = isEditable;
+              
+              // Disable spell checking when editing is enabled
+              if (isEditable) {
+                contentDiv.spellcheck = false;
+                button.textContent = 'Tắt chỉnh sửa';
+                contentDiv.style.border = '1px dashed #4CAF50';
+                contentDiv.focus();
+              } else {
+                contentDiv.spellcheck = true;
+                button.textContent = 'Bật chỉnh sửa';
+                contentDiv.style.border = 'none';
+              }
+            }
+          </script>
+        <select id="textSpacing" class="form-select" onchange="adjustTextSpacing(this.value)" style="display: inline-block; width: auto; margin-right: 10px;">
+            <option value="1">Văn bản - Dãn dòng đơn</option>
+            <option value="1.5">Văn bản - Dãn dòng 1.5</option>
+            <option value="2">Văn bản - Dãn dòng đôi</option>
+        </select>
+
+        <select id="tableSpacing" class="form-select" onchange="adjustTableSpacing(this.value)" style="display: inline-block; width: auto;">
+            <option value="1">Bảng - Dãn dòng đơn</option>
+            <option value="1.5">Bảng - Dãn dòng 1.5</option>
+            <option value="2">Bảng - Dãn dòng đôi</option>
+        </select>
+
+        <script>
+        function adjustTextSpacing(spacing) {
+            const content = document.getElementById('content');
+            const paragraphs = content.querySelectorAll('p:not(table p)');
+            paragraphs.forEach(p => p.style.lineHeight = spacing);
+        }
+
+        function adjustTableSpacing(spacing) {
+            const tables = document.querySelectorAll('table p');
+            tables.forEach(p => p.style.lineHeight = spacing);
+        }
+        </script>
     </div>
 
     <div id="content">
@@ -479,7 +528,7 @@
             document.body.removeChild(fileDownload);
         }
         </script>
-        <script>
+        <!-- <script>
             // Biến trạng thái chỉnh sửa
             let isEditable = false;
     
@@ -500,7 +549,7 @@
                     contentDiv.style.border = "none";
                 }
             }
-        </script>
+        </script> -->
 </body>
 
 </html>
