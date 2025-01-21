@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -27,9 +26,9 @@
             margin: 0 auto;
         }
 
-         p {
-             text-align: justify;
-            
+        p {
+            text-align: justify;
+
         }
 
         p,
@@ -115,57 +114,58 @@
 </head>
 
 <body contenteditable="true">
-    <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
-            PDF</button>
-        <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file
-            DOC</button>
-          </button>  <button
-            id="editBtn"
-            type="button"
-            class="btn btn-outline-primary"
-          
-            onclick="toggleEditContent()"
-            
-          >
-            Bật chỉnh sửa
-          </button>
+    <div id="in" style="display: flex; gap: 10px; margin: 10px 0;"></div>
+    <button type="button" class="btn btn-outline-primary" onclick="window.print()">Print</button>
+    <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất file DOC</button>
+    <button id="editBtn" type="button" class="btn btn-outline-primary" onclick="toggleEditContent()">Bật chỉnh
+        sửa</button>
+    </div>
 
-          <script>
-            let isEditable = false;
-            
-            function toggleEditContent() {
-              const contentDiv = document.getElementById('content');
-              const button = document.getElementById('editBtn');
-              
-              isEditable = !isEditable;
-              contentDiv.contentEditable = isEditable;
-              
-              // Disable spell checking when editing is enabled
-              if (isEditable) {
-                contentDiv.spellcheck = false;
-                button.textContent = 'Tắt chỉnh sửa';
-                contentDiv.style.border = '1px dashed #4CAF50';
-                contentDiv.focus();
-              } else {
-                contentDiv.spellcheck = true;
-                button.textContent = 'Bật chỉnh sửa';
-                contentDiv.style.border = 'none';
-              }
+    </button>
+
+    <script>
+        // Initialize editable state based on body's contentEditable
+        let isEditable = document.body.contentEditable === 'true';
+        const editBtn = document.getElementById('editBtn');
+        editBtn.textContent = isEditable ? 'Tắt chỉnh sửa' : 'Bật chỉnh sửa';
+
+        function toggleEditContent() {
+            const contentBody = document.body;
+
+            isEditable = !isEditable;
+            contentBody.contentEditable = isEditable;
+
+            // Update UI based on state
+            if (isEditable) {
+                contentBody.spellcheck = false;
+                editBtn.textContent = 'Tắt chỉnh sửa';
+                contentBody.style.border = '1px dashed #4CAF50';
+            } else {
+                contentBody.spellcheck = false;
+                editBtn.textContent = 'Bật chỉnh sửa';
+                contentBody.style.border = 'none';
             }
-          </script>
-        <select id="textSpacing" class="form-select" onchange="adjustTextSpacing(this.value)" style="display: inline-block; width: auto; margin-right: 10px;">
-            <option value="1">Văn bản - Dãn dòng đơn</option>
-            <option value="1.5">Văn bản - Dãn dòng 1.5</option>
-            <option value="2">Văn bản - Dãn dòng đôi</option>
-        </select>
+        }
+    </script>
+    <select id="textSpacing" class="form-select" onchange="adjustTextSpacing(this.value)"
+        style="display: inline-block; width: auto; margin-right: 10px; cursor: pointer; border: 1px solid #0d6efd; color: #0d6efd; border-radius: 0.375rem; padding: 0.375rem 0.75rem; background: transparent;"
+        onmouseover="this.style.background='#0d6efd'; this.style.color='white';"
+        onmouseout="this.style.background='transparent'; this.style.color='#0d6efd';">
+        <option value="1">Văn bản - Dãn dòng đơn</option>
+        <option value="1.5">Văn bản - Dãn dòng 1.5</option>
+        <option value="2">Văn bản - Dãn dòng đôi</option>
+    </select>
+    <select id="tableSpacing" class="form-select" onchange="adjustTextSpacing(this.value)"
+        style="display: inline-block; width: auto; margin-right: 10px; cursor: pointer; border: 1px solid #0d6efd; color: #0d6efd; border-radius: 0.375rem; padding: 0.375rem 0.75rem; background: transparent;"
+        onmouseover="this.style.background='#0d6efd'; this.style.color='white';"
+        onmouseout="this.style.background='transparent'; this.style.color='#0d6efd';">
 
-        <select id="tableSpacing" class="form-select" onchange="adjustTableSpacing(this.value)" style="display: inline-block; width: auto;">
-            <option value="1">Bảng - Dãn dòng đơn</option>
-            <option value="1.5">Bảng - Dãn dòng 1.5</option>
-            <option value="2">Bảng - Dãn dòng đôi</option>
-        </select>
+        <option value="1">Bảng - Dãn dòng đơn</option>
+        <option value="1.5">Bảng - Dãn dòng 1.5</option>
+        <option value="2">Bảng - Dãn dòng đôi</option>
+    </select>
 
-        <script>
+    <script>
         function adjustTextSpacing(spacing) {
             const content = document.getElementById('content');
             const paragraphs = content.querySelectorAll('p:not(table p)');
@@ -176,7 +176,51 @@
             const tables = document.querySelectorAll('table p');
             tables.forEach(p => p.style.lineHeight = spacing);
         }
-        </script>
+        function exportHTML() {
+            // Hiển thị hộp thoại để người dùng nhập tên file
+            const fileName = prompt("Nhập tên file:", "document.doc");
+            if (!fileName) {
+                alert("Đã hủy xuất file.");
+                return; // Nếu người dùng không nhập tên, thoát hàm
+            }
+
+            // Tạo header HTML cho Word
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document</title>" +
+                "<style>" +
+                "@page { size: A4; margin: 20mm; }" +
+                "body { font-family: 'Times New Roman', Times, serif; width: 210mm; margin: 0 auto; }" +
+                ".center { text-align: center; }" +
+                ".right { text-align: right; }" +
+                "td p { margin: 0; }" +
+                "p { text-align: justify; line-height: 1; margin: 0; }" +
+                ".bold { font-weight: bold; }" +
+                ".underline { text-decoration: underline; }" +
+                ".signature { margin-top: 50px; }" +
+                ".content { margin-left: 40px; }" +
+                ".red { color: red; }" +
+                ".buttons { text-align: center; margin-bottom: 20px; }" +
+                "</style>" +
+                "</head><body>";
+
+            // Lấy nội dung trong #content
+            var sourceHTML = header + document.getElementById("content").innerHTML + "</body></html>";
+
+            // Tạo liên kết tải xuống
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+
+            // Sử dụng tên file từ prompt
+            fileDownload.download = fileName.endsWith(".doc") ? fileName : fileName + ".doc";
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+
+    </script>
     </div>
 
     <div id="content">
@@ -221,7 +265,7 @@
                 style="font-size: 13.0pt;">Phòng Giám </span><span style="font-size: 13.0pt;">sát cung cấp các nội dung
                 có liên quan đến các </span><span style="font-size: 13.0pt;">tổ chức tham gia </span><span
                 style="font-size: 13.0pt;">BHTG</span><span style="font-size: 13.0pt;"> được kiểm tra </span><span
-                style="font-size: 13.0pt;">trong tháng </span><span id="a" style="font-size: 13.0pt;"></span><span
+                style="font-size: 13.0pt;">trong tháng &lt;&lt;[Thời gian dự kiến]&gt;&gt;</span><span id="a" style="font-size: 13.0pt;"></span><span
                 style="font-size: 13.0pt;"> </span><span style="font-size: 13.0pt;">gồm</span><span
                 style="font-size: 13.0pt;">: </span><span style="font-size: 13.0pt;">t</span><span
                 style="font-size: 13.0pt;">hay đổi h</span><span style="font-size: 13.0pt;">ồ sơ pháp lý</span><span
@@ -263,22 +307,23 @@
             <tr>
                 <td style="width: 35.0pt; width: 35.0pt; border: none;">
                     <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
-                            style="font-size: 13.0pt;">1</span></p>
+                            style="font-size: 13.0pt;">&lt;&lt;count(Split(left(CONCATENATE(select(Kehoachkiemtra[_RowNumber],[Thời gian dự kiến]=[_THISROW].[Thời gian dự kiến])),Find(CONCATENATE([_RowNumber]),CONCATENATE(select(Kehoachkiemtra[_RowNumber],[Thời gian dự kiến]=[_THISROW].[Thời gian dự kiến])))+len(CONCATENATE([_RowNumber]))),","))&gt;&gt;</span></p>
                 </td>
                 <td style="width: 103.9pt; width: 103.9pt; border: none;">
-                    <p style=""><span id="TINH_THANHPHO"></span></p>
+                    <p style="">&lt;&lt;Start:Filter("Kehoachkiemtra",[Thời gian dự kiến]=[_THISROW].[Thời gian dự kiến])&gt;&gt;&lt;&lt;[TENDV]&gt;&gt;<span></span></p>
                 </td>
                 <td style="width: 58.5pt; width: 58.5pt; border: none;">
                     <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
-                            style="font-size: 13.0pt;">id="TINH_THANHPHO"></span></p>
+                            style="font-size: 13.0pt;">&lt;&lt;TINH_THANHPHO&gt;&gt;</span></p>
                 </td>
                 <td style="width: 107.7pt; width: 107.7pt; border: none;">
-                    <p style="text-align: center;"><span style="">06-10/4</span><span style="">/20</span><span
-                            style="">20</span></p>
+                    <p style="text-align: center;">&lt;&lt;[Text:Thoihankiemtra]&gt;&gt;&lt;&lt;End&gt;&gt;
+và đến thời điểm kiểm tra</span></p>
                 </td>
                 <td style="width: 152.6pt; width: 152.6pt; border: none;">
                     <p style="text-align: center;margin-top: 3.0pt;margin-bottom: 3.0pt;"><span
-                            style="font-size: 13.0pt;">Quý II/2016 - Quý I/2020</span></p>
+                            style="font-size: 13.0pt;">&lt;&lt;[Text:Thoikykiemtra]&gt;&gt;&lt;&lt;End&gt;&gt;
+                                và đến thời điểm kiểm tra</span></p>
                 </td>
             </tr>
             <tr>
@@ -392,164 +437,6 @@
         </table>
         <p style=""></p>
         <p style="text-indent: 28.35pt;margin-top: 6.0pt;margin-bottom: 12.0pt;"></p>
-        <script>
-            function getUrlParameter(name) {
-                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-                var results = regex.exec(location.search);
-                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-            }
-
-            // Function to set text content if element exists
-            function setTextContentById(id, value) {
-                var element = document.getElementById(id);
-                if (element) {
-                    element.textContent = value;
-                }
-            }
-
-            // Get parameters from URL and set content
-            var parameters = ['a', 'b','c', 'd', 'e', 'f', 'g','h','i','j','k', 'l', 'm', 'o', 'p', 'q', 'u', 'n'];
-            parameters.forEach(function (param) {
-                var value = getUrlParameter(param);
-                setTextContentById(param, value);
-            });
-            var y = getUrlParameter('y');
-            document.getElementById('y1').textContent = y ;
-            var l = getUrlParameter('l1');
-            document.getElementById('l1').textContent = l ;
-            document.getElementById('l2').textContent = l ;
-            document.getElementById('l3').textContent = l ;
-
-        </script>
-        <script>
-            // function exportHTML() {
-            //     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-            //         "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-            //         "xmlns='http://www.w3.org/TR/REC-html40'>" +
-            //         "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
-            //         "<style>" +
-            //         "@page {" +
-            //         "    size: A4;" +
-            //         "    margin: 20mm;" +
-            //         "}" +
-            //         "body {" +
-            //         "    font-family: 'Times New Roman', Times, serif;" +
-            //         "    width: 210mm;" +
-            //         "    margin: 0 auto;" +
-            //         "}" +
-            //         ".center {" +
-            //         "    text-align: center;" +
-            //         "}" +
-            //         ".right {" +
-            //         "    text-align: right;" +
-            //         "}" +
-            //         "td p {" +
-            //         "        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */" +
-            //         "}" +
-            //         "p {" +
-            //         "        text-align: justify;" +
-            //         "        line-height: 1;" +
-            //         "        margin: 0;" +
-            //         "}" +
-            //         ".bold {" +
-            //         "    font-weight: bold;" +
-            //         "}" +
-            //         ".underline {" +
-            //         "    text-decoration: underline;" +
-            //         "}" +
-            //         ".signature {" +
-            //         "    margin-top: 50px;" +
-            //         "}" +
-            //         ".content {" +
-            //         "    margin-left: 40px;" +
-            //         "}" +
-            //         ".red {" +
-            //         "    color: red;" +
-            //         "}" +
-            //         ".buttons {" +
-            //         "    text-align: center;" +
-            //         "    margin-bottom: 20px;" +
-            //         "}" +
-            //         "</style>" +
-            //         "</head><body>";
-
-            //     var sourceHTML = header + document.getElementById("content").innerHTML;
-
-            //     var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            //     var fileDownload = document.createElement("a");
-            //     document.body.appendChild(fileDownload);
-            //     fileDownload.href = source;
-            //     fileDownload.download = 'document.doc';
-            //     fileDownload.click();
-            //     document.body.removeChild(fileDownload);
-            // }
-            function exportHTML() {
-            // Hiển thị hộp thoại để người dùng nhập tên file
-            const fileName = prompt("Nhập tên file:", "document.doc");
-            if (!fileName) {
-                alert("Đã hủy xuất file.");
-                return; // Nếu người dùng không nhập tên, thoát hàm
-            }
-
-            // Tạo header HTML cho Word
-            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-                "xmlns='http://www.w3.org/TR/REC-html40'>" +
-                "<head><meta charset='utf-8'><title>Export HTML to Word Document</title>" +
-                "<style>" +
-                "@page { size: A4; margin: 20mm; }" +
-                "body { font-family: 'Times New Roman', Times, serif; width: 210mm; margin: 0 auto; }" +
-                ".center { text-align: center; }" +
-                ".right { text-align: right; }" +
-                "td p { margin: 0; }" +
-                "p { text-align: justify; line-height: 1; margin: 0; }" +
-                ".bold { font-weight: bold; }" +
-                ".underline { text-decoration: underline; }" +
-                ".signature { margin-top: 50px; }" +
-                ".content { margin-left: 40px; }" +
-                ".red { color: red; }" +
-                ".buttons { text-align: center; margin-bottom: 20px; }" +
-                "</style>" +
-                "</head><body>";
-
-            // Lấy nội dung trong #content
-            var sourceHTML = header + document.getElementById("content").innerHTML + "</body></html>";
-
-            // Tạo liên kết tải xuống
-            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            var fileDownload = document.createElement("a");
-            document.body.appendChild(fileDownload);
-            fileDownload.href = source;
-
-            // Sử dụng tên file từ prompt
-            fileDownload.download = fileName.endsWith(".doc") ? fileName : fileName + ".doc";
-            fileDownload.click();
-            document.body.removeChild(fileDownload);
-        }
-        </script>
-        <!-- <script>
-            // Biến trạng thái chỉnh sửa
-            let isEditable = false;
-    
-            // Hàm bật/tắt chỉnh sửa
-            function toggleEditContent() {
-                const contentDiv = document.getElementById('content');
-                const button = document.querySelector('header button');
-    
-                isEditable = !isEditable;
-                contentDiv.contentEditable = isEditable;
-                button.textContent = isEditable ? "Tắt chỉnh sửa" : "Bật chỉnh sửa";
-    
-                // Thay đổi giao diện vùng chỉnh sửa
-                if (isEditable) {
-                    contentDiv.style.border = "1px dashed #4CAF50";
-                    contentDiv.focus();
-                } else {
-                    contentDiv.style.border = "none";
-                }
-            }
-        </script> -->
 </body>
 
 </html>
