@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang='vi'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Biểu tổng hợp các sai phạm về huy động tiền gửi tiết kiệm</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'
+    integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+
+<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js'
+    integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r'
+    crossorigin='anonymous'></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js'
+    integrity='sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy'
+    crossorigin='anonymous'></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 20px;
+            width: 297mm; /* Chiều rộng A4 ngang */
+            height: 210mm; /* Chiều cao A4 */
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-left {
+            float: left;
+            text-align: left;
+        }
+        .header-right {
+            float: right;
+            text-align: right;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <body contenteditable='true'>
+        <div id='in' style='display: flex; gap: 10px; margin: 10px 0;'></div>
+        <button type='button' class='btn btn-outline-primary' onclick='window.print()'>Print</button>
+        <button id='exportBtn' type='button' class='btn btn-outline-primary' onclick='exportHTML()'>Xuất file DOC</button>
+        <button id='editBtn' type='button' class='btn btn-outline-primary' onclick='toggleEditContent()'>Bật chỉnh sửa</button>
+        </div>
+    
+        </button>
+    
+        <script>
+            // Initialize editable state based on body's contentEditable
+            let isEditable = document.body.contentEditable === 'true';
+            const editBtn = document.getElementById('editBtn');
+            editBtn.textContent = isEditable ? 'Tắt chỉnh sửa' : 'Bật chỉnh sửa';
+    
+            function toggleEditContent() {
+                const contentBody = document.body;
+    
+                isEditable = !isEditable;
+                contentBody.contentEditable = isEditable;
+    
+                // Update UI based on state
+                if (isEditable) {
+                    contentBody.spellcheck = false;
+                    editBtn.textContent = 'Tắt chỉnh sửa';
+                    contentBody.style.border = '1px dashed #4CAF50';
+                } else {
+                    contentBody.spellcheck = false;
+                    editBtn.textContent = 'Bật chỉnh sửa';
+                    contentBody.style.border = 'none';
+                }
+            }
+        </script>
+        <select id='textSpacing' class='form-select' onchange='adjustTextSpacing(this.value)'
+            style='display: inline-block; width: auto; margin-right: 10px; cursor: pointer; border: 1px solid #0d6efd; color: #0d6efd; border-radius: 0.375rem; padding: 0.375rem 0.75rem; background: transparent;'
+            onmouseover='this.style.background='#0d6efd'; this.style.color='white';'
+            onmouseout='this.style.background='transparent'; this.style.color='#0d6efd';'>
+            <option value='1'>Văn bản - Dãn dòng đơn</option>
+            <option value='1.5'>Văn bản - Dãn dòng 1.5</option>
+            <option value='2'>Văn bản - Dãn dòng đôi</option>
+        </select>
+        <select id='tableSpacing' class='form-select' onchange='adjustTextSpacing(this.value)'
+            style='display: inline-block; width: auto; margin-right: 10px; cursor: pointer; border: 1px solid #0d6efd; color: #0d6efd; border-radius: 0.375rem; padding: 0.375rem 0.75rem; background: transparent;'
+            onmouseover='this.style.background='#0d6efd'; this.style.color='white';'
+            onmouseout='this.style.background='transparent'; this.style.color='#0d6efd';'>
+    
+            <option value='1'>Bảng - Dãn dòng đơn</option>
+            <option value='1.5'>Bảng - Dãn dòng 1.5</option>
+            <option value='2'>Bảng - Dãn dòng đôi</option>
+        </select>
+    
+        <script>
+            function adjustTextSpacing(spacing) {
+                const content = document.getElementById('content');
+                const paragraphs = content.querySelectorAll('p:not(table p)');
+                paragraphs.forEach(p => p.style.lineHeight = spacing);
+            }
+    
+            function adjustTableSpacing(spacing) {
+                const tables = document.querySelectorAll('table p');
+                tables.forEach(p => p.style.lineHeight = spacing);
+            }
+            function exportHTML() {
+                // Hiển thị hộp thoại để người dùng nhập tên file
+                const fileName = prompt('Nhập tên file:', 'document.doc');
+                if (!fileName) {
+                    alert('Đã hủy xuất file.');
+                    return; // Nếu người dùng không nhập tên, thoát hàm
+                }
+    
+                // Tạo header HTML cho Word
+                var header = '<html xmlns:o='urn:schemas-microsoft-com:office:office' ' +
+                    'xmlns:w='urn:schemas-microsoft-com:office:word' ' +
+                    'xmlns='http://www.w3.org/TR/REC-html40'>' +
+                    '<head><meta charset='utf-8'><title>Export HTML to Word Document</title>' +
+                    '<style>' +
+                    '@page { size: A4; margin: 20mm; }' +
+                    'body { font-family: 'Times New Roman', Times, serif; width: 210mm; margin: 0 auto; }' +
+                    '.center { text-align: center; }' +
+                    '.right { text-align: right; }' +
+                    'td p { margin: 0; }' +
+                    'p { text-align: justify; line-height: 1; margin: 0; }' +
+                    '.bold { font-weight: bold; }' +
+                    '.underline { text-decoration: underline; }' +
+                    '.signature { margin-top: 50px; }' +
+                    '.content { margin-left: 40px; }' +
+                    '.red { color: red; }' +
+                    '.buttons { text-align: center; margin-bottom: 20px; }' +
+                    '</style>' +
+                    '</head><body>';
+    
+                // Lấy nội dung trong #content
+                var sourceHTML = header + document.getElementById('content').innerHTML + '</body></html>';
+    
+                // Tạo liên kết tải xuống
+                var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+                var fileDownload = document.createElement('a');
+                document.body.appendChild(fileDownload);
+                fileDownload.href = source;
+    
+                // Sử dụng tên file từ prompt
+                fileDownload.download = fileName.endsWith('.doc') ? fileName : fileName + '.doc';
+                fileDownload.click();
+                document.body.removeChild(fileDownload);
+            }
+    
+        </script>
+        </div>
+    
+    </body>
+    <div class='header'>
+        <div class='header-left'>
+            BẢO HIỂM TIỀN GỬI VIỆT NAM<br>
+            <strong>CNKV ĐỒNG BẰNG SÔNG CỬU LONG</strong><br>
+            <strong>ĐOÀN KIỂM TRA TẠI QTDND HÀM NHƠN</strong>
+        </div>
+        <div class='header-right'>
+            <strong> Biểu số 02/KTr<br></strong>
+           (Đính kèm đề cương kiểm tra)
+        </div>
+        <div style='clear: both;'></div>
+    </div>
+
+    <div class='header'><strong>BIỂU TỔNG HỢP CÁC SAI PHẠM VỀ HUY ĐỘNG TIỀN GỬI TIẾT KIỆM,<br>TẠI QTDND HÀM NHƠN</strong></div>
+    <div class='subtitle'>(Tính đến thời điểm ngày 13/08/2024)</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th rowspan='4'>STT</th>
+                <th rowspan='4'>Tên khách hàng/<br>Mã khách hàng</th>
+                <th rowspan='4'>Số sổ tiền gửi/<br>HĐTG</th>
+                <th rowspan='4'>Số CMND/<br>CCCD</th>
+                <th rowspan='4'>Ngày gửi</th>
+                <th rowspan='4'>Lãi suất<br>(%/năm)</th>
+                <th rowspan='4'>Số dư tiền gửi<br>tại thời điểm<br>kiểm tra</th>
+                <th rowspan='4'>Kỳ hạn<br>(tháng)</th>
+                <th colspan='13'>Các dạng sai phạm</th>
+                <!-- <th rowspan='4'>Ghi chú</th> -->
+            </tr>
+            <tr>
+                <th colspan='6'>Các thông tin trên hồ sơ, chứng từ, sổ sách liên quan<br>đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</th>
+                <th colspan='2'>Lãi suất huy động và<br>chi trả lãi chưa đúng quy định</th>
+                <th colspan='2'>Hạch toán kế toán<br>liên quan đến tiền gửi tiết kiệm<br>chưa đúng quy định</th>
+                <th rowspan='3'>Thủ tục thu/chi tiền mặt,<br>giấy tờ có giá chưa đúng quy định</th>
+                <th rowspan='3'>Vi phạm khác</th>
+                <th rowspan='3'>Ghi chú</th>
+            </tr>
+            <tr>
+                <th colspan='2'>Thông tin<br>khách hàng<br>chưa đầy đủ, hợp pháp, hợp lệ</th>
+                <th colspan='2'>Thông tin trên hồ sơ,<br>chứng từ, sổ sách chưa đầy đủ,<br>hợp pháp, hợp lệ</th>
+                <th colspan='2'>Chữ ký của khách hàng hoặc<br>cán bộ có liên quan của QTDND<br>chưa đầy đủ, hợp pháp, hợp lệ</th>
+                <th rowspan='2'>Lãi suất huy động<br>chưa đúng quy định</th>
+                <th rowspan='2'>Chi trả lãi tiền gửi<br>tiết kiệm chưa đúng quy định</th>
+                <th rowspan='2'>Số dư không khớp đúng</th>
+                <th rowspan='2'>Hạch toán kế toán liên quan đến tiền gửi tiết kiệm chưa đúng quy định</th>
+            </tr>
+            <tr>
+                <th>Thiếu Thông tin</th>
+                <th>Thông tin không<br>hợp pháp, hợp lệ</th>
+                <th>Thông tin không<br>đầy đủ</th>
+                <th>Thông tin không<br>hợp pháp, hợp lệ</th>
+                <th>Thiếu chữ ký</th>
+                <th>Chữ ký không<br>hợp pháp, hợp lệ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>(1)</td>
+                <td>(2)</td>
+                <td>(3)</td>
+                <td>(4)</td>
+                <td>(5)</td>
+                <td>(6)</td>
+                <td>(7)</td>
+                <td>(8)</td>
+                <td>(9)</td>
+                <td>(10)</td>
+                <td>(11)</td>
+                <td>(12)</td>
+                <td>(13)</td>
+                <td>(14)</td>
+                <td>(15)</td>
+                <td>(16)</td>
+                <td>(17)</td>
+                <td>(18)</td>
+                <td>(19)</td>
+                <td>(20)</td>
+                <td>(21)</td>
+            </tr>
+            <!-- Dòng này có thể lặp lại nếu có thêm dữ liệu -->
+ 
+            <tr>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][Index],"","")&"</td>              
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][04|Tên khách hàng],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][02|Số sổ tiết kiệm],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][06|Chứng minh/CCCD],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][07|Ngày cấp CCCD],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][13|Ngày gửi tiền],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][10|Số dư hiện tại],"","")&"</td>
+              <td>"&SUBSTITUTE([Cot_ao_ket_qua][11|Kỳ hạn],"","")&"</td>
+              <td>(11)</td>
+              <td>(12)</td>
+              <td>(11)</td>
+              <td>(12)</td>
+              <td>(13)</td>
+              <td>(14)</td>
+              <td>(15)</td>
+              <td>(16)</td>
+              <td>(17)</td>
+              <td>(18)</td>
+              <td>(19)</td>
+              <td>(20)</td>
+              <td>(21)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class='header'> 
+        </div>
+        <div class='header-left'>
+            <strong> Lập biểu</strong>
+
+        </div>
+        <div class='header-right'>
+            <strong>Tân Lược, ngày ... tháng ... năm ... 2025<br>
+            Trưởng đoàn kiểm tra              </strong>
+        </div>
+        <div style='clear: both;'></div>
+    </div>
+</body>
+</html>

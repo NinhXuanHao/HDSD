@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phối hợp Kiểm tra gửi NHNN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        /* Fallback for browsers that do not support @page */
+        body {
+            width: 210mm; /* A4 width */
+            margin: 20mm auto; /* Centered with 20mm margin */
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            width: 210mm;
+            /* Width of A4 */
+            margin: 0 auto;
+        }
+
+        /* Commented out legacy rule 
+        p {
+            text-align: justify;
+        }
+        */
+        p, h1, h2, h3, div:not(table *) {
+            text-align: justify; line-height: 1; /* Single spacing */
+        }
+        table td, table th {
+            line-height: 1; /* Single spacing */
+        }
+        td p {
+        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */
+        }
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+
+        .content {
+            margin-left: 40px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: right;
+                /* Đảm bảo rằng nền footer là trắng để tránh chồng lấp */
+                padding: 10px 0;
+                /* Đường kẻ ngăn cách footer với nội dung */
+            }
+
+            /* Ẩn các phần tử khác nếu cần */
+            #in * {
+                visibility: hidden;
+            }
+
+            #footer,
+            #footer,
+            #content * {
+                visibility: visible;
+            }
+
+            /* Nếu bạn muốn hiện các phần khác của nội dung, hãy tùy chỉnh các selector */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="in"><button type="button" class="btn btn-outline-primary" onclick="window.print()">In hoặc xuất
+        PDF</button>
+        <button id="exportBtn" type="button" class="btn btn-outline-primary" onclick="exportHTML()">Xuất thành file DOC</button></div>
+
+    <div id="content">
+    <table>
+        <tr>
+            <td style="width: 262.25pt; width: 262.25pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 12.0pt;">BẢO HIỂM TIỀN GỬI VIỆT NAM</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 12.0pt;">CNKV ĐỒNG BẰNG SÔNG CỬU
+                        LONG</span></p>
+                <p style=""></p>
+            </td>
+            <td style="width: 517.4pt; width: 517.4pt; border: none;">
+                <p style="text-align: right;"></p>
+                <p style="text-align: right;"><span style="font-size: 12.0pt;">Biểu số 02/KTr</span></p>
+                <p style="text-align: right;"><span style="font-size: 12.0pt;">(Đính kèm đề cương kiểm tra)</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 262.25pt; width: 262.25pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 12.0pt;">ĐOÀN KIỂM TRA TẠI QTDND
+                        HÀM NHƠN</span></p>
+            </td>
+            <td style="width: 517.4pt; width: 517.4pt; border: none;">
+                <p style=""></p>
+            </td>
+        </tr>
+    </table>
+    <p style=""></p>
+    <p style="text-align: center;"><span style="font-weight: bold;">BIỂU TỔNG HỢP CÁC SAI PHẠM VỀ HUY ĐỘNG TIỀN GỬI TIẾT
+            KIỆM</span></p>
+    <p style="text-align: center;"><span style="font-weight: bold;">TẠI QTDND HÀM NHƠN</span></p>
+    <p style="text-align: center;"><span style="font-style: italic;">(Tính đến thời điểm ngày 13/08/2024)</span></p>
+    <table>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">STT</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Tên khách hàng/</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        Mã khách hàng</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số sổ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        HĐTG</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        CMND/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        CCCD</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ngày gửi</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        suất</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (%/năm)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tại</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thời điểm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        kiểm tra</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Kỳ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        hạn</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (tháng)</span></p>
+            </td>
+            <td style="width: 473.0pt; width: 33.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 44.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 0.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 33.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 34.15pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+            <td style="width: 473.0pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Các dạng sai phạm</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">STT</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Tên khách hàng/</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        Mã khách hàng</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số sổ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        HĐTG</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        CMND/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        CCCD</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ngày gửi</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        suất</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (%/năm)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tại</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thời điểm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        kiểm tra</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Kỳ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        hạn</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (tháng)</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 33.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 44.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 0.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 33.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 218.75pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Càc thông tin trên hồ sơ,
+                        chứng từ, sổ sách liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến tiền gửi tiết kiệm chưa đầy đủ, hợp pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 69.55pt; width: 35.4pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi suất</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        huy động và</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chi trả lãi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 69.55pt; width: 34.15pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi suất</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        huy động và</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chi trả lãi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 78.0pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Hạch toán kế
+                        toán</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        liên quan đến</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi tiết kiệm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng quy định</span></p>
+            </td>
+            <td style="width: 78.0pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Hạch toán kế
+                        toán</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        liên quan đến</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi tiết kiệm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng quy định</span></p>
+            </td>
+            <td style="width: 43.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thủ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tục</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thu/chi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        mặt,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        giấy tờ</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        có giá</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        định</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Vi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        phạm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        khác</span></p>
+            </td>
+            <td style="width: 28.3pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ghi chú</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">STT</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Tên khách hàng/</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        Mã khách hàng</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số sổ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        HĐTG</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        CMND/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        CCCD</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ngày gửi</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        suất</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (%/năm)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tại</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thời điểm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        kiểm tra</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Kỳ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        hạn</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (tháng)</span></p>
+            </td>
+            <td style="width: 69.2pt; width: 33.35pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông tin</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">khách hàng</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">chưa đầy đủ, hợp</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 69.2pt; width: 35.85pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông tin</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">khách hàng</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">chưa đầy đủ, hợp</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">pháp, hợp lệ</span></p>
+            </td>
+            <td style="width: 80.4pt; width: 35.85pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông tin trên</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hồ sơ, chứng từ,</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">sổ sách chưa đầy</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">đủ, hợp pháp,</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hợp lệ</span></p>
+            </td>
+            <td style="width: 80.4pt; width: 44.55pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông tin trên</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hồ sơ, chứng từ,</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">sổ sách chưa đầy</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">đủ, hợp pháp,</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hợp lệ</span></p>
+            </td>
+            <td style="width: 69.15pt; width: 0.3pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Chữ ký của</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">khách hàng hoặc</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">cán bộ có liên quan</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">của QTDND chưa</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">đầy đủ, hợp pháp,</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hợp lệ</span></p>
+            </td>
+            <td style="width: 69.15pt; width: 33.4pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Chữ ký của</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">khách hàng hoặc</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">cán bộ có liên quan</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">của QTDND chưa</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">đầy đủ, hợp pháp,</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hợp lệ</span></p>
+            </td>
+            <td style="width: 69.15pt; width: 35.45pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Chữ ký của</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">khách hàng hoặc</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">cán bộ có liên quan</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">của QTDND chưa</span></p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">đầy đủ, hợp pháp,</span>
+                </p>
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">hợp lệ</span></p>
+            </td>
+            <td style="width: 69.55pt; width: 35.4pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi suất</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        huy động và</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chi trả lãi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 69.55pt; width: 34.15pt; border: 1px solid #000000;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi suất</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        huy động và</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chi trả lãi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        khớp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đúng</span></p>
+            </td>
+            <td style="width: 42.55pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Hạch toán</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        kế toán</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiết kiệm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 43.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thủ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tục</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thu/chi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        mặt,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        giấy tờ</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        có giá</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        định</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Vi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        phạm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        khác</span></p>
+            </td>
+            <td style="width: 28.3pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ghi chú</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">STT</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Tên khách hàng/</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        Mã khách hàng</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số sổ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        HĐTG</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        CMND/</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        CCCD</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ngày gửi</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        suất</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (%/năm)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tại</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thời điểm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        kiểm tra</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Kỳ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        hạn</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        (tháng)</span></p>
+            </td>
+            <td style="width: 33.35pt; width: 33.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thiếu</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        thông</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tin</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tin</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        pháp,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp lệ</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tin</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đầy đủ</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 44.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tin</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        pháp,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp lệ</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 0.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thông</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tin</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        pháp,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp lệ</span></p>
+            </td>
+            <td style="width: 33.4pt; width: 33.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thiếu chữ ký</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Chữ ký</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        pháp,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        hợp lệ</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Lãi suất</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        huy động</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 34.15pt; width: 34.15pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Chi trả lãi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiết kiệm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Số dư</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        không</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        khớp</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đúng</span></p>
+            </td>
+            <td style="width: 42.55pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Hạch toán</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        kế toán</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        liên quan</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đến</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền gửi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiết kiệm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy định</span></p>
+            </td>
+            <td style="width: 43.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Thủ</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        tục</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        thu/chi</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        tiền</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        mặt,</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        giấy tờ</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        có giá</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        chưa</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        đúng</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        quy</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        định</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Vi</span><span
+                        style="font-weight: bold;font-size: 8.0pt;">
+                        phạm</span><span style="font-weight: bold;font-size: 8.0pt;">
+                        khác</span></p>
+            </td>
+            <td style="width: 28.3pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-weight: bold;font-size: 8.0pt;">Ghi chú</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(1)</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(2)</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(3)</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(4)</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(5)</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(6)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(7)</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(8)</span></p>
+            </td>
+            <td style="width: 33.35pt; width: 33.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(9)</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(10)</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(11)</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 44.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(12)</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 0.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(12)</span></p>
+            </td>
+            <td style="width: 33.4pt; width: 33.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(13)</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(14)</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(15)</span></p>
+            </td>
+            <td style="width: 34.15pt; width: 34.15pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(16)</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(17)</span></p>
+            </td>
+            <td style="width: 42.55pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(18)</span></p>
+            </td>
+            <td style="width: 43.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(19)</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(20)</span></p>
+            </td>
+            <td style="width: 28.3pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(21)</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 32.35pt; width: 32.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(1)</span></p>
+            </td>
+            <td style="width: 60.0pt; width: 60.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(2)</span></p>
+            </td>
+            <td style="width: 39.6pt; width: 39.6pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(3)</span></p>
+            </td>
+            <td style="width: 41.3pt; width: 41.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(4)</span></p>
+            </td>
+            <td style="width: 32.05pt; width: 32.05pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(5)</span></p>
+            </td>
+            <td style="width: 41.5pt; width: 41.5pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(6)</span></p>
+            </td>
+            <td style="width: 42.0pt; width: 42.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(7)</span></p>
+            </td>
+            <td style="width: 38.85pt; width: 38.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(8)</span></p>
+            </td>
+            <td style="width: 33.35pt; width: 33.35pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(9)</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(10)</span></p>
+            </td>
+            <td style="width: 35.85pt; width: 35.85pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(11)</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 44.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(12)</span></p>
+            </td>
+            <td style="width: 44.85pt; width: 0.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(12)</span></p>
+            </td>
+            <td style="width: 33.4pt; width: 33.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(13)</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(14)</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(15)</span></p>
+            </td>
+            <td style="width: 34.15pt; width: 34.15pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(16)</span></p>
+            </td>
+            <td style="width: 35.45pt; width: 35.45pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(17)</span></p>
+            </td>
+            <td style="width: 42.55pt; width: 42.55pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(18)</span></p>
+            </td>
+            <td style="width: 43.0pt; width: 43.0pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(19)</span></p>
+            </td>
+            <td style="width: 35.4pt; width: 35.4pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(20)</span></p>
+            </td>
+            <td style="width: 28.3pt; width: 28.3pt; border: none;">
+                <p style="text-align: center;"><span style="font-size: 8.0pt;">(21)</span></p>
+            </td>
+        </tr>
+    </table>
+    <p style=""></p>
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to set text content if element exists
+        function setTextContentById(id, value) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        // Get parameters from URL and set content
+        var parameters = ['a', 'b']; //, 'c', 'aj', 'tinh','ad', 'y', 'ss', 'ae', 'l', 'ak', 'al', 'am', 'an', 'f', 'n'];
+        parameters.forEach(function (param) {
+            var value = getUrlParameter(param);
+            setTextContentById(param, value);
+        });
+        var y = getUrlParameter('y');
+        document.getElementById('y1').textContent = y;
+        var l = getUrlParameter('l1');
+        document.getElementById('l1').textContent = l;
+        document.getElementById('l2').textContent = l;
+        document.getElementById('l3').textContent = l;
+
+    </script>
+    <script>
+        function exportHTML() {
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+                "<style>" +
+                "@page {" +
+                "    size: A4;" +
+                "    margin: 20mm;" +
+                "}" +
+                "body {" +
+                "    font-family: 'Times New Roman', Times, serif;" +
+                "    width: 210mm;" +
+                "    margin: 0 auto;" +
+                "}" +
+                ".center {" +
+                "    text-align: center;" +
+                "}" +
+                ".right {" +
+                "    text-align: right;" +
+                "}" +
+                "td p {" +
+                "        margin: 0; /* Đảm bảo văn bản trong ô không có spacing */" +
+                "}" +
+                "p {" +
+                "        text-align: justify;" +
+                "        line-height: 1;" +
+                "        margin: 0;" +
+                "}" +
+                ".bold {" +
+                "    font-weight: bold;" +
+                "}" +
+                ".underline {" +
+                "    text-decoration: underline;" +
+                "}" +
+                ".signature {" +
+                "    margin-top: 50px;" +
+                "}" +
+                ".content {" +
+                "    margin-left: 40px;" +
+                "}" +
+                ".red {" +
+                "    color: red;" +
+                "}" +
+                ".buttons {" +
+                "    text-align: center;" +
+                "    margin-bottom: 20px;" +
+                "}" +
+                "</style>" +
+                "</head><body>";
+
+            var sourceHTML = header + document.getElementById("content").innerHTML;
+
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'document.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+    </script>
+    </body>
+    </html>
